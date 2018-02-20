@@ -6,14 +6,15 @@
   "scripts": {
     "start": "node index.js",
     "start:watch": "nodemon",
-    "prestart:prod": "tsc",
-    "start:prod": "node dist/main.js"
+    "start:prod": "tsc; node dist/main.js"
   },
   "dependencies": {
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "@types/node": "^9.3.0",
+    "@types/yargs": "^11.0.0",
     "nodemon": "^1.14.1",
     "ts-node": "^4.1.0"
   }
