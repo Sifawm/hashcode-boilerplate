@@ -1,3 +1,2 @@
 import { argv } from "yargs";
-
-console.log(argv.prueba);
+// console.log(argv.prueba);
