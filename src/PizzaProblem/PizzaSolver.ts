@@ -60,7 +60,7 @@ export class PizzaSolver extends ProblemSolver {
   private buildSolutionNode(node: Node<Pizza>) {
     this.validMolds.forEach(mold => {
       const pizza = node.data;
-      const slices: Slice[] = pizza.findAllValidSliceForMold(mold);
+      const slices: Slice[] = pizza.findAllValidSlicesForTheGivenMold(mold);
       slices.forEach(slice => {
         const childPizza = new Pizza(pizza.cells, [...pizza.slices, slice]);
         const childNode = new Node<Pizza>(node, childPizza);

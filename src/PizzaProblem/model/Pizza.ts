@@ -24,13 +24,7 @@ export class Pizza {
   }
 
   isSliceOverlapping(slice: Slice): boolean {
-    this.slices.forEach(solution => {
-        if ( this.isSliceContained(slice, solution)) {
-            return true;
-        }
-    });
-
-    return false;
+    return this.slices.every(currentSlice => this.isSliceContained(slice, currentSlice));
   }
 
   isSliceContained(sliceA: Slice, sliceB: Slice): boolean {
@@ -44,7 +38,7 @@ export class Pizza {
         && slice.coordinateB.col < this.numOfColumns;
   }
 
-  findAllValidSliceForMold(mold: Mold): Slice[] {
+  findAllValidSlicesForTheGivenMold(mold: Mold): Slice[] {
     return null; // TODO
   }
 }
