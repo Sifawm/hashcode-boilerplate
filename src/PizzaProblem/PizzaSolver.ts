@@ -1,4 +1,4 @@
-import { ProblemSolver } from "../utils/ProblenSolver";
+import { ProblemSolver } from "../utils/ProblemSolver";
 
 interface Size{
   rows: number;
