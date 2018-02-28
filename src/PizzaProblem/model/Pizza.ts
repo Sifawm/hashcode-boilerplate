@@ -1,7 +1,9 @@
-import { Slice } from "./Slice";
+import { Slice, Coordinate } from "./Slice";
 import { Mold } from "./Mold";
 
 export class Pizza {
+
+
   constructor(
     public cells: string[][],
     public slices?: Slice[],
@@ -22,7 +24,17 @@ export class Pizza {
   }
 
   isSliceOverlapping(slice: Slice): boolean {
-    return true;
+    this.slices.forEach(solution => {
+        if ( this.isSliceContained(slice, solution)) {
+            return true;
+        }
+    });
+
+    return false;
+  }
+
+  isSliceContained(sliceA: Slice, sliceB: Slice): boolean {
+        return false;
   }
 
   isSliceInBounds(slice: Slice): boolean {
