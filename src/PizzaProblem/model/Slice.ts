@@ -1,6 +1,6 @@
 export interface Coordinate {
   row: number;
-  col; number;
+  col: number;
 }
 export class Slice {
   constructor(

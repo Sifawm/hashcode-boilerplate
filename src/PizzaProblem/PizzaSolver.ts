@@ -54,14 +54,15 @@ export class PizzaSolver extends ProblemSolver {
     const rootNode = new Node<Pizza>(null, initialPizza);
     this.solutionTreeRoot = this.buildSolutionNode(rootNode);
 
-    console.log('solutionTree', this.solutionTreeRoot);
+    console.log('solutionTree', this.solutionTreeRoot.data);
   }
 
   private buildSolutionNode(node: Node<Pizza>) {
+    const pizza = node.data;
+    console.log(pizza);
     this.validMolds.forEach(mold => {
-      const pizza = node.data;
-      const slices: Slice[] = pizza.findAllValidSlicesForTheGivenMold(mold);
-      slices.forEach(slice => {
+      const validSlices: Slice[] = pizza.findAllValidSlicesForTheGivenMold(mold);
+      validSlices.forEach(slice => {
         const childPizza = new Pizza(pizza.cells, [...pizza.slices, slice]);
         const childNode = new Node<Pizza>(node, childPizza);
         const builtChildNode = this.buildSolutionNode(childNode);

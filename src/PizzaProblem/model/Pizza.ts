@@ -34,6 +34,28 @@ export class Pizza {
   }
 
   findAllValidSlicesForTheGivenMold(mold: Mold): Slice[] {
-    return null; // TODO
+    const validSlices: Slice[] = [];
+
+    for (let row = 0; row < this.cells.length; row++) {
+      for (let col = 0; col < this.cells[0].length; col++) {
+        const newCoordinate: Coordinate = { row, col };
+        const newSlice = this.getSliceFromMold(mold, newCoordinate);
+        if (this.isSliceInBounds(newSlice) && !this.isSliceOverlapping(newSlice)) {
+          validSlices.push(newSlice);
+        }
+      }
+    }
+
+    return validSlices;
+  }
+
+  getSliceFromMold(mold: Mold, coordinate: Coordinate): Slice {
+    const coordinateA = { ...coordinate };
+    const coordinateB: Coordinate = {
+      row: mold.rows + coordinate.row - 1,
+      col: mold.cols + coordinate.col - 1,
+    };
+
+    return new Slice(coordinateA, coordinateB, mold.cells);
   }
 }
