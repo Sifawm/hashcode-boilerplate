@@ -1,4 +1,3 @@
-3 5 1 6
-TTTTT
-TMMMT
-TTTTT
+2 2 1 2
+TT
+TM
