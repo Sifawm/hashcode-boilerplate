@@ -13,12 +13,23 @@ export class Pizza {
     }
   }
 
+  get numOfColumns(): number {
+    return this.cells[0].length;
+  }
+
+  get numOfRows(): number {
+    return this.cells.length;
+  }
+
   isSliceOverlapping(slice: Slice): boolean {
     return true;
   }
 
   isSliceInBounds(slice: Slice): boolean {
-    return true;
+    return slice.coordinateA.row < this.numOfRows
+        && slice.coordinateB.row < this.numOfRows
+        && slice.coordinateA.col < this.numOfColumns
+        && slice.coordinateB.col < this.numOfColumns;
   }
 
   findAllValidSliceForMold(mold: Mold): Slice[] {

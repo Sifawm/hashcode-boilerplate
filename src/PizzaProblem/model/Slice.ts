@@ -8,4 +8,12 @@ export class Slice {
     public coordinateB: Coordinate,
     public numberOfCells: number,
   ) {}
+
+  get width() {
+    return Math.abs(this.coordinateB.col - this.coordinateA.col);
+  }
+
+  get height() {
+    return Math.abs(this.coordinateB.row - this.coordinateA.row);
+  }
 }
