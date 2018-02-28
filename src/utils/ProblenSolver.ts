@@ -1,7 +1,7 @@
 import { FileScanner } from "./FileScanner";
 
 export abstract class ProblemSolver {
-  private fileScanner: FileScanner;
+  public fileScanner: FileScanner;
 
   constructor(
     private inputFile: string,
