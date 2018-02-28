@@ -13,7 +13,7 @@ export class PizzaSolver extends ProblemSolver {
   private validMolds: Array<Mold> = [];
   private solutionTreeRoot: Node<Pizza>;
 
-  public parseInput(){
+  public parseInput() {
     const parameters: string = this.fileScanner.nextLine();
     const values: Array<string> = parameters.split(" ");
 
@@ -22,7 +22,7 @@ export class PizzaSolver extends ProblemSolver {
     this.l = +values[2];
     this.h = +values[3];
 
-    for (let i = 0 ; i < this.r ; ++i){
+    for (let i = 0; i < this.r; ++i) {
       const line: string = this.fileScanner.nextLine();
       const arrayOfChar = line.split("");
       this.pizza.push(arrayOfChar);
@@ -31,17 +31,17 @@ export class PizzaSolver extends ProblemSolver {
     this.validMolds = this.obtainSizes();
   }
 
-  private obtainSizes(){
-    const result: Array<Mold> =  [];
-    for (let i = 1 ; i <= this.r ; ++i) {
-      for (let j = 1 ; j <= this.c; ++j){
+  private obtainSizes() {
+    const result: Array<Mold> = [];
+    for (let i = 1; i <= this.r; ++i) {
+      for (let j = 1; j <= this.c; ++j) {
         if ((i * j >= this.l * 2) && (i * j <= this.h)) {
-            const mold: Mold = {
-              rows: i,
-              cols: j,
-              cells: i * j,
-            };
-            result.push(mold);
+          const mold: Mold = {
+            rows: i,
+            cols: j,
+            cells: i * j,
+          };
+          result.push(mold);
         }
       }
     }
@@ -49,7 +49,7 @@ export class PizzaSolver extends ProblemSolver {
     return result;
   }
 
-  public solve(){
+  public solve() {
     const initialPizza = new Pizza(this.pizza);
     this.solutionTreeRoot = new Node<Pizza>(null, initialPizza);
 
@@ -59,13 +59,13 @@ export class PizzaSolver extends ProblemSolver {
   private buildSolutionNode(node: Node<Pizza>) {
     this.validMolds.forEach(mold => {
       const pizza = node.data;
-      const slice: Slice = pizza.findValidSliceForMold(mold);
-      if (slice) {
+      const slices: Slice[] = pizza.findAllValidSliceForMold(mold);
+      slices.forEach(slice => {
         const childPizza = new Pizza(pizza.cells, [...pizza.slices, slice]);
         const childNode = new Node<Pizza>(node, childPizza);
         const builtChildNode = this.buildSolutionNode(childNode);
         node.children.push(builtChildNode);
-      }
+      });
     });
     return node;
   }

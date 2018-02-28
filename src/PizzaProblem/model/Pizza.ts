@@ -21,7 +21,7 @@ export class Pizza {
     return true;
   }
 
-  findValidSliceForMold(mold: Mold): Slice {
+  findAllValidSliceForMold(mold: Mold): Slice[] {
     return null; // TODO
   }
 }
