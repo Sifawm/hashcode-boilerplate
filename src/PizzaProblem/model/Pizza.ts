@@ -3,7 +3,6 @@ import { Mold } from "./Mold";
 
 export class Pizza {
 
-
   constructor(
     public cells: string[][],
     public slices?: Slice[],
@@ -24,11 +23,7 @@ export class Pizza {
   }
 
   isSliceOverlapping(slice: Slice): boolean {
-    return this.slices.every(currentSlice => this.isSliceContained(slice, currentSlice));
-  }
-
-  isSliceContained(sliceA: Slice, sliceB: Slice): boolean {
-        return false;
+    return this.slices.some(currentSlice => currentSlice.overlaps(slice));
   }
 
   isSliceInBounds(slice: Slice): boolean {
