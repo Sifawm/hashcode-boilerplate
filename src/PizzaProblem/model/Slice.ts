@@ -19,8 +19,8 @@ export class Slice {
 
   overlaps(slice: Slice) {
     return this.coordinateA.row <= slice.coordinateA.row
-        && slice.coordinateA.row <= this.coordinateA.row + this.width
+        && slice.coordinateA.row <= this.coordinateA.row + this.height
         && this.coordinateA.col <= slice.coordinateA.col
-        && slice.coordinateA.col <= this.coordinateA.col + this.height;
+        && slice.coordinateA.col <= this.coordinateA.col + this.width;
   }
 }
