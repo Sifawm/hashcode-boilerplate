@@ -1,4 +1,4 @@
-import { FileScanner } from "./utils/FileScanner";
+import { FileScanner } from "./FileScanner";
 
 export abstract class ProblemSolver {
   private fileScanner: FileScanner;
