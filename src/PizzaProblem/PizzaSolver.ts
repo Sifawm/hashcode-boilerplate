@@ -51,7 +51,8 @@ export class PizzaSolver extends ProblemSolver {
 
   public solve() {
     const initialPizza = new Pizza(this.pizza);
-    this.solutionTreeRoot = new Node<Pizza>(null, initialPizza);
+    const rootNode = new Node<Pizza>(null, initialPizza);
+    this.solutionTreeRoot = this.buildSolutionNode(rootNode);
 
     console.log('solutionTree', this.solutionTreeRoot);
   }
