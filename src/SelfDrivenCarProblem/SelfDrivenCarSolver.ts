@@ -35,6 +35,17 @@ export class SelfDrivenCarSolver extends ProblemSolver {
       this.cars = this.cars.sort((a, b) => {
         return a.currentStep - b.currentStep;
       });
+      let output: string = "";
+      this.cars.forEach( car => {
+        const rides = car.rides;
+        output = output + rides.length + " ";
+        rides.forEach( ride => {
+            output = output + ride.index;
+        });
+        output = output + "/n";
+      });
+
+      FileScanner.saveFile("output.txt", output);
     }
   }
 
