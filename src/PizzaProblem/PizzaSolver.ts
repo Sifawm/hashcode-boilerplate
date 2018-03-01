@@ -54,12 +54,15 @@ export class PizzaSolver extends ProblemSolver {
     const rootNode = new Node<Pizza>(null, initialPizza);
     this.solutionTreeRoot = this.buildSolutionNode(rootNode);
 
-    console.log('solutionTree', this.solutionTreeRoot.data);
+    const solutions = this.getSolutionsFromSolutionTree(this.solutionTreeRoot);
+    solutions.forEach(solution => {
+      console.log(solution);
+      console.log('----------------------');
+    });
   }
 
   private buildSolutionNode(node: Node<Pizza>) {
     const pizza = node.data;
-    console.log(pizza);
     this.validMolds.forEach(mold => {
       const validSlices: Slice[] = pizza.findAllValidSlicesForTheGivenMold(mold);
       validSlices.forEach(slice => {
@@ -70,5 +73,17 @@ export class PizzaSolver extends ProblemSolver {
       });
     });
     return node;
+  }
+
+  private getSolutionsFromSolutionTree(node: Node<Pizza>) {
+    const solutions = [];
+    if (node.children.length === 0) {
+      solutions.push(node.data.slices);
+    } else {
+      node.children.forEach(child => {
+        solutions.push(...this.getSolutionsFromSolutionTree(child));
+      });
+    }
+    return solutions;
   }
 }
