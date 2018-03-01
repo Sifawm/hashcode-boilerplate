@@ -1,6 +1,7 @@
 import { ProblemSolver } from "../utils/ProblemSolver";
 import { Ride } from "./model/Ride";
 import { Car } from "./model/Car";
+import { FileScanner } from "../utils/FileScanner";
 
 export class SelfDrivenCarSolver extends ProblemSolver {
 
@@ -35,6 +36,19 @@ export class SelfDrivenCarSolver extends ProblemSolver {
                 return a.currentStep - b.currentStep;
             });
         }
+
+        let output: string = "";
+
+        this.cars.forEach( car => {
+            const rides = car.rides;
+            output = rides.length + " ";
+            rides.forEach( ride => {
+                output = output + ride.index + " ";
+            });
+            output = output + "\n";
+        });
+
+        FileScanner.saveFile("output.txt", output);
     }
 
 }
