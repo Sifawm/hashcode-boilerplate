@@ -31,22 +31,33 @@ export class SelfDrivenCarSolver extends ProblemSolver {
 
   solve() {
     while (this.cars[0].currentStep < this.T && this.rides.length > 0) {
-      this.cars[0].getBestRide(this.rides);
+      const car = this.cars[0];
+      const ride = car.getBestRide(this.rides);
+
+      if (car.currentStep + ride.getTotalDistance() + 1 <= this.T) {
+        car.currentStep += ride.getTotalDistance() + 1;
+        car.rides.push(ride);
+        this.rides = this.rides.filter(r => r !== ride);
+      } else {
+        car.currentStep += 1;
+      }
+
       this.cars = this.cars.sort((a, b) => {
         return a.currentStep - b.currentStep;
       });
-      let output: string = "";
-      this.cars.forEach( car => {
-        const rides = car.rides;
-        output = output + rides.length + " ";
-        rides.forEach( ride => {
-            output = output + ride.index;
-        });
-        output = output + "/n";
-      });
-
-      FileScanner.saveFile("output.txt", output);
     }
+
+    let output: string = "";
+    this.cars.forEach( car => {
+      const rides = car.rides;
+      output = output + rides.length + " ";
+      rides.forEach( ride => {
+          output = output + ride.index + " ";
+      });
+      output = output + "\n";
+    });
+
+    FileScanner.saveFile("output.txt", output);
   }
 
 }

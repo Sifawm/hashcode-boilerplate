@@ -1,7 +1,7 @@
 import { argv } from "yargs";
-import { PizzaSolver} from "./PizzaProblem/PizzaSolver";
+import { SelfDrivenCarSolver } from "./SelfDrivenCarProblem/SelfDrivenCarSolver";
 // console.log(argv.prueba);
 
-const pizzaSolver = new PizzaSolver("./src/PizzaProblem/input.txt");
+const pizzaSolver = new SelfDrivenCarSolver("./src/SelfDrivenCarProblem/a_example.in");
 pizzaSolver.parseInput();
 pizzaSolver.solve();
